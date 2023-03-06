@@ -1,6 +1,7 @@
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateMovieDto } from '../dto/create-movie.dto';
+import { UpdateMovieDto } from '../dto/update-movie.dto';
 import { Movie } from '../entities/movie.entity';
 
 export class MovieRepository {
@@ -21,5 +22,16 @@ export class MovieRepository {
     return this.model.create({
       ...data,
     });
+  }
+
+  async update(id: string, data: UpdateMovieDto) {
+    return this.model.updateOne(
+      {
+        _id: id,
+      },
+      {
+        ...data,
+      },
+    );
   }
 }

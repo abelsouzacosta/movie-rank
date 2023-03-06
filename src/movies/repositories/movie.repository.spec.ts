@@ -4,6 +4,7 @@ import { Model } from 'mongoose';
 import { Movie } from '../entities/movie.entity';
 import { MovieRepository } from './movie.repository';
 import { CreateMovieDto } from '../dto/create-movie.dto';
+import { UpdateMovieDto } from '../dto/update-movie.dto';
 
 describe('MovieRepository', () => {
   let mockMovieModel: Model<Movie>;
@@ -75,6 +76,20 @@ describe('MovieRepository', () => {
       const created = await mockRepository.create(data);
       expect(spy).toBeCalledTimes(1);
       expect(created).toBe(data);
+    });
+  });
+
+  describe('update', () => {
+    it('should update a instance of a movie', async () => {
+      const data: UpdateMovieDto = {
+        duration: '1h56',
+      };
+      const spy = jest
+        .spyOn(mockMovieModel, 'updateOne')
+        .mockResolvedValueOnce(true as any);
+      const updated = await mockRepository.update('123', data);
+      expect(spy).toBeCalledTimes(1);
+      expect(updated).toBe(true);
     });
   });
 });
