@@ -34,4 +34,10 @@ export class MovieRepository {
       },
     );
   }
+
+  async delete(id: string) {
+    return this.model.deleteOne({
+      _id: id,
+    });
+  }
 }

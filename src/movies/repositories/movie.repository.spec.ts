@@ -92,4 +92,16 @@ describe('MovieRepository', () => {
       expect(updated).toBe(true);
     });
   });
+
+  describe('delete', () => {
+    it('should delete a instance with the id given', async () => {
+      const id = '123';
+      const spy = jest
+        .spyOn(mockMovieModel, 'deleteOne')
+        .mockResolvedValue(true as any);
+      const deleted = await mockRepository.delete(id);
+      expect(spy).toBeCalledTimes(1);
+      expect(deleted).toBe(true);
+    });
+  });
 });
