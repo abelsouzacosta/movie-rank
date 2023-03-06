@@ -28,32 +28,53 @@ describe('MovieRepository', () => {
     expect(mockRepository).toBeDefined();
   });
 
-  it('should return a instance of a movie', async () => {
-    const movie = {
-      id: '123',
-      title: 'The Whale',
-      description: 'Darren Aronofsky new movie',
-      duration: '1h57',
-    };
-    const spy = jest
-      .spyOn(mockMovieModel, 'findById')
-      .mockResolvedValueOnce(movie);
-    const result = await mockRepository.findOne('123');
-    expect(result).toBe(movie);
-    expect(spy).toBeCalledTimes(1);
+  describe('findOne', () => {
+    it('should return a instance of a movie', async () => {
+      const movie = {
+        id: '123',
+        title: 'The Whale',
+        description: 'Darren Aronofsky new movie',
+        duration: '1h57',
+      };
+      const spy = jest
+        .spyOn(mockMovieModel, 'findById')
+        .mockResolvedValueOnce(movie);
+      const result = await mockRepository.findOne('123');
+      expect(result).toBe(movie);
+      expect(spy).toBeCalledTimes(1);
+    });
   });
 
-  it('should create a instance of a movie', async () => {
-    const data: CreateMovieDto = {
-      title: 'The Whale',
-      description: 'Darren Aronofsky new movie',
-      duration: '1h57',
-    };
-    const spy = jest
-      .spyOn(mockMovieModel, 'create')
-      .mockImplementationOnce(() => Promise.resolve(data));
-    const created = await mockRepository.create(data);
-    expect(spy).toBeCalledTimes(1);
-    expect(created).toBe(data);
+  describe('find', () => {
+    it('should return all instance of movies in the database', async () => {
+      const movies = [
+        {
+          id: '123',
+          title: 'The Whale',
+          description: 'Darren Aronofsky new movie',
+          duration: '1h57',
+        },
+      ];
+      const spy = jest.spyOn(mockMovieModel, 'find').mockResolvedValue(movies);
+      const result = await mockRepository.find();
+      expect(spy).toBeCalledTimes(1);
+      expect(result).toBe(movies);
+    });
+  });
+
+  describe('create', () => {
+    it('should create a instance of a movie', async () => {
+      const data: CreateMovieDto = {
+        title: 'The Whale',
+        description: 'Darren Aronofsky new movie',
+        duration: '1h57',
+      };
+      const spy = jest
+        .spyOn(mockMovieModel, 'create')
+        .mockImplementationOnce(() => Promise.resolve(data));
+      const created = await mockRepository.create(data);
+      expect(spy).toBeCalledTimes(1);
+      expect(created).toBe(data);
+    });
   });
 });

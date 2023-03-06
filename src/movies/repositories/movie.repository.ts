@@ -13,6 +13,10 @@ export class MovieRepository {
     return this.model.findById(id);
   }
 
+  async find(): Promise<Array<Movie>> {
+    return this.model.find();
+  }
+
   async create(data: CreateMovieDto) {
     return this.model.create({
       ...data,
