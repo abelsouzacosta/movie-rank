@@ -89,4 +89,13 @@ describe('MoviesController', () => {
       expect(result).toEqual(movieObj);
     });
   });
+
+  describe('delete', () => {
+    it('should delete a instance with the given id', async () => {
+      const spy = jest.spyOn(service, 'remove');
+      const result = await controller.remove('123');
+      expect(spy).toBeCalled();
+      expect(result).toBe(true);
+    });
+  });
 });
