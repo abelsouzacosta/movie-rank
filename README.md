@@ -22,15 +22,27 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+##  Descrição
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Este é um teste prático feito para a empresa [Ubots](https://ubots.com.br/)
 
-## Installation
+## Instalação
+
+1. Faça o clone do repositorio `git clone git@github.com:abelsouzacosta/movie-rank.git && cd movie-rank`
+
+2. Instale as dependências do NestJs:
 
 ```bash
 $ npm install
 ```
+
+3. Crie um arquivo **.env** e adicione as seguintes linhas nele:
+
+```bash
+APP_PORT=3000
+MONGODB_URL=mongodb://mongodb:27017/movies
+```
+4. Inicialize os containers da aplicação com o comando `npm run build:container`
 
 ## Running the app
 
