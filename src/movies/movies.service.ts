@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { CreateMovieDto } from './dto/create-movie.dto';
+import { RateMovieDto } from './dto/rate-movie.dto';
 import { UpdateMovieDto } from './dto/update-movie.dto';
 import { MovieRepository } from './repositories/movie.repository';
 
@@ -25,5 +26,9 @@ export class MoviesService {
 
   remove(id: string) {
     return this.repository.delete(id);
+  }
+
+  rate(id: string, data: RateMovieDto) {
+    return this.repository.rate(id, data);
   }
 }

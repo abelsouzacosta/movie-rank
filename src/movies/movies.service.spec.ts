@@ -97,4 +97,17 @@ describe('MoviesService', () => {
       expect(result).toBe(true);
     });
   });
+
+  describe('rate', () => {
+    it('should rate a movie with the given id', async () => {
+      const id = '123';
+      const data = {
+        note: 10,
+      };
+      const spy = jest.spyOn(repository, 'rate');
+      const result = await service.rate(id, data);
+      expect(spy).toBeCalled();
+      expect(result).toEqual(movieObj);
+    });
+  });
 });
