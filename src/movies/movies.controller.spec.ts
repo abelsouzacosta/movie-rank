@@ -76,4 +76,17 @@ describe('MoviesController', () => {
       expect(result).toEqual(movieObj);
     });
   });
+
+  describe('update', () => {
+    it('should update a instance with the given id', async () => {
+      const id = '123';
+      const data = {
+        description: 'Teste',
+      };
+      const spy = jest.spyOn(service, 'update');
+      const result = await controller.update(id, data);
+      expect(spy).toBeCalled();
+      expect(result).toEqual(movieObj);
+    });
+  });
 });
