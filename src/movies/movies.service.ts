@@ -12,11 +12,11 @@ export class MoviesService {
   }
 
   findAll() {
-    return `This action returns all movies`;
+    return this.repository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} movie`;
+  findOne(id: string) {
+    return this.repository.findOne(id);
   }
 
   update(id: number, updateMovieDto: UpdateMovieDto) {
