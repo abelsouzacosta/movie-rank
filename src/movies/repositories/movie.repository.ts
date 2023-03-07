@@ -40,4 +40,11 @@ export class MovieRepository {
       _id: id,
     });
   }
+
+  async getNonRatedMovies(): Promise<Array<Movie>> {
+    return this.model.find({
+      note: 0,
+      title: undefined,
+    });
+  }
 }

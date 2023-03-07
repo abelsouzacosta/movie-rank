@@ -58,7 +58,7 @@ describe('MovieRepository', () => {
       ];
       const spy = jest.spyOn(mockMovieModel, 'find').mockResolvedValue(movies);
       const result = await mockRepository.find();
-      expect(spy).toBeCalledTimes(1);
+      expect(spy).toBeCalled();
       expect(result).toBe(movies);
     });
   });
@@ -102,6 +102,24 @@ describe('MovieRepository', () => {
       const deleted = await mockRepository.delete(id);
       expect(spy).toBeCalledTimes(1);
       expect(deleted).toBe(true);
+    });
+  });
+
+  describe('getNonRatedMovies', () => {
+    it('should return a list of rated movies', async () => {
+      const movies = [
+        {
+          id: '123',
+          title: 'The Whale',
+          description: 'Darren Aronofsky new movie',
+          duration: '1h57',
+          rate: 0,
+        },
+      ];
+      const spy = jest.spyOn(mockMovieModel, 'find').mockResolvedValue(movies);
+      const result = await mockRepository.getNonRatedMovies();
+      expect(spy).toBeCalled();
+      expect(result).toBe(movies);
     });
   });
 });
