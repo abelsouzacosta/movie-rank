@@ -18,6 +18,7 @@ describe('MoviesService', () => {
     create: jest.fn(() => Promise.resolve(movieObj)),
     find: jest.fn(() => Promise.resolve([movieObj])),
     findById: jest.fn(() => Promise.resolve(movieObj)),
+    updateOne: jest.fn(() => Promise.resolve(movieObj)),
   };
 
   beforeEach(async () => {
@@ -68,6 +69,19 @@ describe('MoviesService', () => {
       const id = '123';
       const spy = jest.spyOn(repository, 'findOne');
       const result = await service.findOne(id);
+      expect(spy).toBeCalled();
+      expect(result).toEqual(movieObj);
+    });
+  });
+
+  describe('update', () => {
+    it('should update a instance of movie with the given id', async () => {
+      const id = '123';
+      const data = {
+        description: 'Quantin Tarantino last movie',
+      };
+      const spy = jest.spyOn(repository, 'update');
+      const result = await service.update(id, data);
       expect(spy).toBeCalled();
       expect(result).toEqual(movieObj);
     });

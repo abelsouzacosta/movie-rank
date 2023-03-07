@@ -19,8 +19,8 @@ export class MoviesService {
     return this.repository.findOne(id);
   }
 
-  update(id: number, updateMovieDto: UpdateMovieDto) {
-    return `This action updates a #${id} movie`;
+  update(id: string, data: UpdateMovieDto) {
+    return this.repository.update(id, data);
   }
 
   remove(id: number) {
