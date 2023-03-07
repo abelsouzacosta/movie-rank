@@ -19,6 +19,7 @@ describe('MoviesService', () => {
     find: jest.fn(() => Promise.resolve([movieObj])),
     findById: jest.fn(() => Promise.resolve(movieObj)),
     updateOne: jest.fn(() => Promise.resolve(movieObj)),
+    deleteOne: jest.fn(() => Promise.resolve(true)),
   };
 
   beforeEach(async () => {
@@ -84,6 +85,16 @@ describe('MoviesService', () => {
       const result = await service.update(id, data);
       expect(spy).toBeCalled();
       expect(result).toEqual(movieObj);
+    });
+  });
+
+  describe('delete', () => {
+    it('should remove a instance of movie from database with the given id', async () => {
+      const id = '123';
+      const spy = jest.spyOn(repository, 'delete');
+      const result = await service.remove(id);
+      expect(spy).toBeCalled();
+      expect(result).toBe(true);
     });
   });
 });

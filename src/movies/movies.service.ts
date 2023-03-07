@@ -23,7 +23,7 @@ export class MoviesService {
     return this.repository.update(id, data);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} movie`;
+  remove(id: string) {
+    return this.repository.delete(id);
   }
 }
