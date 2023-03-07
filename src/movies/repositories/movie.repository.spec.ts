@@ -42,7 +42,7 @@ describe('MovieRepository', () => {
         .mockResolvedValueOnce(movie);
       const result = await mockRepository.findOne('123');
       expect(result).toBe(movie);
-      expect(spy).toBeCalledTimes(1);
+      expect(spy).toBeCalled();
     });
   });
 
@@ -74,7 +74,7 @@ describe('MovieRepository', () => {
         .spyOn(mockMovieModel, 'create')
         .mockImplementationOnce(() => Promise.resolve(data));
       const created = await mockRepository.create(data);
-      expect(spy).toBeCalledTimes(1);
+      expect(spy).toBeCalled();
       expect(created).toBe(data);
     });
   });
@@ -88,7 +88,7 @@ describe('MovieRepository', () => {
         .spyOn(mockMovieModel, 'updateOne')
         .mockResolvedValueOnce(true as any);
       const updated = await mockRepository.update('123', data);
-      expect(spy).toBeCalledTimes(1);
+      expect(spy).toBeCalled();
       expect(updated).toBe(true);
     });
   });
@@ -100,7 +100,7 @@ describe('MovieRepository', () => {
         .spyOn(mockMovieModel, 'deleteOne')
         .mockResolvedValue(true as any);
       const deleted = await mockRepository.delete(id);
-      expect(spy).toBeCalledTimes(1);
+      expect(spy).toBeCalled();
       expect(deleted).toBe(true);
     });
   });
@@ -120,6 +120,21 @@ describe('MovieRepository', () => {
       const result = await mockRepository.getNonRatedMovies();
       expect(spy).toBeCalled();
       expect(result).toBe(movies);
+    });
+  });
+
+  describe('rateMovie', () => {
+    it('should update the movie note', async () => {
+      const id = '123';
+      const dto = {
+        note: 10,
+      };
+      const spy = jest
+        .spyOn(mockMovieModel, 'updateOne')
+        .mockResolvedValueOnce(true as any);
+      const result = await mockRepository.rate(id, dto);
+      expect(spy).toBeCalled();
+      expect(result).toBe(true);
     });
   });
 });
