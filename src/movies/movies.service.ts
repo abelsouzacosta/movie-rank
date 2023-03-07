@@ -1,11 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { CreateMovieDto } from './dto/create-movie.dto';
 import { UpdateMovieDto } from './dto/update-movie.dto';
+import { MovieRepository } from './repositories/movie.repository';
 
 @Injectable()
 export class MoviesService {
-  create(createMovieDto: CreateMovieDto) {
-    return 'This action adds a new movie';
+  constructor(private readonly repository: MovieRepository) {}
+
+  async create(data: CreateMovieDto) {
+    return this.repository.create(data);
   }
 
   findAll() {
