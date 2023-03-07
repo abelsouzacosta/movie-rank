@@ -31,4 +31,8 @@ export class MoviesService {
   rate(id: string, data: RateMovieDto) {
     return this.repository.rate(id, data);
   }
+
+  suggestions() {
+    return this.repository.getNonRatedMovies();
+  }
 }

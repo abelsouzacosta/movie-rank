@@ -110,4 +110,13 @@ describe('MoviesService', () => {
       expect(result).toEqual(movieObj);
     });
   });
+
+  describe('suggestions', () => {
+    it('should return all non rated movies', async () => {
+      const spy = jest.spyOn(repository, 'getNonRatedMovies');
+      const result = await service.suggestions();
+      expect(spy).toBeCalled();
+      expect(result).toEqual([movieObj]);
+    });
+  });
 });
