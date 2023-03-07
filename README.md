@@ -46,4 +46,4 @@ MONGODB_URL=mongodb://mongodb:27017/movies
 
 ## Endpoint
 
-Após iniciar sua aplicação ela estará rodando na porta especificada em seu arquivo **.env**, você pode encontrar uma documentação para os endpoints em `/api`
+Após iniciar sua aplicação ela estará rodando na porta especificada em seu arquivo **.env**, você pode encontrar uma documentação para os endpoints em `http://localhost:3000/api`
