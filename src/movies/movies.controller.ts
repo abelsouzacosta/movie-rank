@@ -10,6 +10,7 @@ import {
 import { MoviesService } from './movies.service';
 import { CreateMovieDto } from './dto/create-movie.dto';
 import { UpdateMovieDto } from './dto/update-movie.dto';
+import { RateMovieDto } from './dto/rate-movie.dto';
 
 @Controller('movies')
 export class MoviesController {
@@ -33,6 +34,10 @@ export class MoviesController {
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateMovieDto: UpdateMovieDto) {
     return this.moviesService.update(id, updateMovieDto);
+  }
+
+  rate(@Param('id') id: string, @Body() data: RateMovieDto) {
+    return this.moviesService.rate(id, data);
   }
 
   @Delete(':id')

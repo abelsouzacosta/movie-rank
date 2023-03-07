@@ -98,4 +98,17 @@ describe('MoviesController', () => {
       expect(result).toBe(true);
     });
   });
+
+  describe('rate', () => {
+    it('should rate a instance with the given id', async () => {
+      const id = '123';
+      const data = {
+        note: 10,
+      };
+      const spy = jest.spyOn(service, 'rate');
+      const result = await controller.rate(id, data);
+      expect(spy).toBeCalled();
+      expect(result).toEqual(movieObj);
+    });
+  });
 });
