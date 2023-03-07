@@ -111,4 +111,13 @@ describe('MoviesController', () => {
       expect(result).toEqual(movieObj);
     });
   });
+
+  describe('suggestions', () => {
+    it('should return all documents in the database', async () => {
+      const spy = jest.spyOn(service, 'suggestions');
+      const result = await controller.suggestions();
+      expect(spy).toBeCalled();
+      expect(result).toEqual([movieObj]);
+    });
+  });
 });

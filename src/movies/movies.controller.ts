@@ -26,6 +26,11 @@ export class MoviesController {
     return this.moviesService.findAll();
   }
 
+  @Get('suggestions')
+  suggestions() {
+    return this.moviesService.suggestions();
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.moviesService.findOne(id);
