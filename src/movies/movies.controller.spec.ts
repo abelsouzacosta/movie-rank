@@ -67,4 +67,13 @@ describe('MoviesController', () => {
       expect(result).toEqual([movieObj]);
     });
   });
+
+  describe('findOne', () => {
+    it('should return all documents in the database', async () => {
+      const spy = jest.spyOn(service, 'findOne');
+      const result = await controller.findOne('123');
+      expect(spy).toBeCalled();
+      expect(result).toEqual(movieObj);
+    });
+  });
 });
